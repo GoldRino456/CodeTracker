@@ -2,9 +2,18 @@
 {
     internal class CodingSession
     {
+        public int ID { get; private set; }
         public DateTime StartTime { get; private set; }
         public DateTime EndTime { get; private set; }
         public TimeSpan Duration { get; private set; }
+
+        public CodingSession(Int64 id, string startTime, string endTime, string duration)
+        {
+            ID = Convert.ToInt32(id);
+            StartTime = DateTime.Parse(startTime);
+            EndTime = DateTime.Parse(endTime);
+            Duration = TimeSpan.Parse(duration);
+        }
 
         public CodingSession(DateTime startTime, DateTime endTime)
         {
@@ -47,6 +56,11 @@
         private TimeSpan CalculateDuration(DateTime startTime,  DateTime endTime)
         {
             return endTime - startTime;
+        }
+
+        public override string ToString()
+        {
+            return $"Session Start: {StartTime}, Session End: {EndTime}, Session Duration: {Duration.Days} Days, {Duration.Hours} hours, and {Duration.Minutes}minutes.";
         }
     }
 }
