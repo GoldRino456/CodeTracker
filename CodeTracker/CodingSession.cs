@@ -28,7 +28,7 @@
         }
 
         /// <summary>
-        /// Method <c>UpdateCodingSession</c> changes the start or end time of a coding session.
+        /// Changes the start or end time of a coding session.
         /// </summary>
         /// <param name="newTime">Time object that will replace either start or end time.</param>
         /// <param name="isStartTime">Flag used to determine which time property to replace.</param>
@@ -47,7 +47,7 @@
         }
 
         /// <summary>
-        /// Method <c>UpdateCodingSession</c> changes both the start and end time of a coding session.
+        /// Changes both the start and end time of a coding session.
         /// </summary>
         /// <param name="newStartTime"></param>
         /// <param name="newEndTime"></param>
@@ -59,7 +59,7 @@
         }
 
         /// <summary>
-        /// Method <c>GetDisplayFormattedProperties</c> creates a list of the CodingSession's properties converted to display-friendly formatted string values in the following order: id, startTime, endTime, and duration.
+        /// Creates a list of the CodingSession's properties converted to display-friendly formatted string values in the following order: id, startTime, endTime, and duration.
         /// </summary>
         public List<string> GetDisplayFormattedProperties()
         {

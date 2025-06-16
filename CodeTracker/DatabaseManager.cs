@@ -13,6 +13,7 @@ namespace CodeTracker
         private readonly string _createEntry = "INSERT INTO CodingSessions (startTime, endTime, duration) VALUES (@StartTime, @EndTime, @Duration)";
         private readonly string _updateEntry = "UPDATE CodingSessions SET startTime = @StartTime, endTime = @EndTime, duration = @Duration WHERE id = @Id";
         private readonly string _deleteEntry = "DELETE FROM CodingSessions WHERE id = @Id";
+        private readonly string _getRowIDs = "SELECT id FROM CodingSessions";
 
 
         public DatabaseManager()
@@ -58,6 +59,11 @@ namespace CodeTracker
             parameters.Add("@Id", id);
 
             DatabaseUtilities.ExecuteNonQueryCommand(_connectionString, _deleteEntry, parameters);
+        }
+
+        public List<int> GetAllRowIDs()
+        {
+            return DatabaseUtilities.ExecuteQueryCommand<int>(_connectionString, _getRowIDs);
         }
     }
 }
