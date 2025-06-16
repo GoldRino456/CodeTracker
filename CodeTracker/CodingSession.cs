@@ -22,6 +22,11 @@
             Duration = CalculateDuration(StartTime, EndTime);
         }
 
+        private TimeSpan CalculateDuration(DateTime startTime, DateTime endTime)
+        {
+            return endTime - startTime;
+        }
+
         /// <summary>
         /// Method <c>UpdateCodingSession</c> changes the start or end time of a coding session.
         /// </summary>
@@ -53,14 +58,19 @@
             Duration = CalculateDuration(StartTime, EndTime);
         }
 
-        private TimeSpan CalculateDuration(DateTime startTime,  DateTime endTime)
+        /// <summary>
+        /// Method <c>GetDisplayFormattedProperties</c> creates a list of the CodingSession's properties converted to display-friendly formatted string values in the following order: id, startTime, endTime, and duration.
+        /// </summary>
+        public List<string> GetDisplayFormattedProperties()
         {
-            return endTime - startTime;
-        }
+            List<string> formattedProperties = new();
 
-        public override string ToString()
-        {
-            return $"Session Start: {StartTime}, Session End: {EndTime}, Session Duration: {Duration.Days} Days, {Duration.Hours} hours, and {Duration.Minutes}minutes.";
+            formattedProperties.Add(ID.ToString());
+            formattedProperties.Add(StartTime.ToString());
+            formattedProperties.Add(EndTime.ToString());
+            formattedProperties.Add($"{Duration:dd\\.hh\\:mm\\:ss} Days");
+
+            return formattedProperties;
         }
     }
 }
