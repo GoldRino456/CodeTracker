@@ -1,7 +1,7 @@
 ﻿using Spectre.Console;
 using System.Globalization;
 
-namespace CodeTracker
+namespace CodeTracker.GoldRino456
 {
     internal static class DisplayEngine
     {

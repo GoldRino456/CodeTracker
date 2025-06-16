@@ -1,4 +1,4 @@
-﻿namespace CodeTracker
+﻿namespace CodeTracker.GoldRino456
 {
     public static class CodeTracker
     {

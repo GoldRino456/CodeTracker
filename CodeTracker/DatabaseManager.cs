@@ -1,7 +1,7 @@
 ﻿using Dapper;
 using System.Configuration;
 
-namespace CodeTracker
+namespace CodeTracker.GoldRino456
 {
     internal class DatabaseManager
     {

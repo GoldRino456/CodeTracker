@@ -1,4 +1,4 @@
-﻿namespace CodeTracker
+﻿namespace CodeTracker.GoldRino456
 {
     internal class CodingSession
     {

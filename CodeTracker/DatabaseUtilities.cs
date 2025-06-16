@@ -1,7 +1,7 @@
 ﻿using Dapper;
 using System.Data.SQLite;
 
-namespace CodeTracker
+namespace CodeTracker.GoldRino456
 {
     internal static class DatabaseUtilities
     {
