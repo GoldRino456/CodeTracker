@@ -41,6 +41,23 @@ namespace CodeTracker
             DatabaseUtilities.ExecuteNonQueryCommand(_connectionString, _createEntry, parameters);
         }
 
-        
+        public void UpdateExistingCodingSession(int id, CodingSession updatedCodingSession)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@Id", id);
+            parameters.Add("@StartTime", updatedCodingSession.StartTime);
+            parameters.Add("@EndTime", updatedCodingSession.EndTime);
+            parameters.Add("@Duration", updatedCodingSession.Duration);
+
+            DatabaseUtilities.ExecuteNonQueryCommand(_connectionString, _updateEntry, parameters);
+        }
+
+        public void DeleteExistingCodingSession(int id)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@Id", id);
+
+            DatabaseUtilities.ExecuteNonQueryCommand(_connectionString, _deleteEntry, parameters);
+        }
     }
 }
