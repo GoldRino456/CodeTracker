@@ -86,7 +86,10 @@ namespace CodeTracker.GoldRino456
                 var startTime = PromptForDateTime("What time did the coding session begin? (Please enter in the following format: MM/DD/YYYY HH:MM:SS)");
                 var endTime = PromptForDateTime("What time did the coding session end? (Please enter in the following format: MM/DD/YYYY HH:MM:SS)");
 
-                if(endTime <= startTime)
+                Console.WriteLine(startTime + "\t" + endTime);
+                Console.WriteLine("Debug: " + InputValidationUtilities.CheckDateTimeRange(startTime, endTime));
+
+                if (!InputValidationUtilities.CheckDateTimeRange(startTime, endTime))
                 {
                     AnsiConsole.MarkupLine("[red]End time must take place AFTER the start time![/]");
                     continue;
@@ -121,26 +124,29 @@ namespace CodeTracker.GoldRino456
 
         private static int PromptForRowChoice(List<int> tableIDs, string prompt)
         {
-            return AnsiConsole.Prompt(
-                                new TextPrompt<int>(prompt)
-                                .Validate((n) => (n == 0 || tableIDs.Contains(n)
+            var acceptedInputList = tableIDs;
+            acceptedInputList.Add(0);
+
+            var input = AnsiConsole.Prompt(
+                                new TextPrompt<string>(prompt)
+                                .Validate((n) => InputValidationUtilities.CheckInputAsIntInList(acceptedInputList,n) != null
                                 ? ValidationResult.Success()
                                 : ValidationResult.Error("[red]Invalid input. Please enter a number from the list above (or 0 to go back).[/]")
-                                )));
+                                ));
+
+            return Int32.Parse(input);
         }
 
 
         private static DateTime PromptForDateTime(string promptMessage)
         {
-            DateTime dateTime = DateTime.UnixEpoch;
-
-            AnsiConsole.Prompt(
+            var prompt = AnsiConsole.Prompt(
                 new TextPrompt<string>(promptMessage)
-                .Validate((n) => DateTime.TryParseExact(n.ToString().Trim(),"MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTime)
+                .Validate((n) => InputValidationUtilities.CheckInputAsDateTime(n) != null
                 ? ValidationResult.Success()
                 : ValidationResult.Error("[red]Please ensure your answer is correctly formatted (MM/DD/YYYY HH:MM:SS).[/]")));
 
-            return dateTime;
+            return InputValidationUtilities.CheckInputAsDateTime(prompt).Value;
         }
 
         private static void DisplaySingleCodingSession(CodingSession session)
